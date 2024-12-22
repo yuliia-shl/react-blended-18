@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { getUserInfo } from './service/opencagedataApi';
 import { getCurrency } from './redux/currency/ops';
 import { useDispatch } from 'react-redux';
+import { setDefaultCurrency } from './redux/currency/slice';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ export const App = () => {
     }
 
     function error(err) {
+      dispatch(setDefaultCurrency('USD'));
       console.warn(`ERROR(${err.code}): ${err.message}`);
     }
 

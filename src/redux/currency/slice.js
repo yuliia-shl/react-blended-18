@@ -6,7 +6,11 @@ const slice = createSlice({
     baseCurrency: '',
   },
   name: 'currency',
-  reducers: {},
+  reducers: {
+    setDefaultCurrency: (state, action) => {
+      state.baseCurrency = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder.addCase(getCurrency.fulfilled, (state, action) => {
       state.baseCurrency = action.payload;
@@ -14,3 +18,4 @@ const slice = createSlice({
   },
 });
 export const currencyReducer = slice.reducer;
+export const { setDefaultCurrency } = slice.actions;
