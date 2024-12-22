@@ -29,7 +29,7 @@ export const App = () => {
     }
 
     window.navigator.geolocation.getCurrentPosition(success, error, options);
-  }, []);
+  }, [dispatch]);
 
   return (
     <Routes>

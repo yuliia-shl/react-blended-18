@@ -1,9 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getCurrency } from './ops';
+import { getCurrency, getExchangeInfo } from './ops';
 
 const slice = createSlice({
   initialState: {
     baseCurrency: '',
+    exchangeInfo: null,
+    isLoading: false,
+    isError: null,
   },
   name: 'currency',
   reducers: {
@@ -12,9 +15,13 @@ const slice = createSlice({
     },
   },
   extraReducers: builder => {
-    builder.addCase(getCurrency.fulfilled, (state, action) => {
-      state.baseCurrency = action.payload;
-    });
+    builder
+      .addCase(getCurrency.fulfilled, (state, action) => {
+        state.baseCurrency = action.payload;
+      })
+      .addCase(getExchangeInfo.fulfilled, (state, action) => {
+        state.exchangeInfo = action.payload;
+      });
   },
 });
 export const currencyReducer = slice.reducer;
